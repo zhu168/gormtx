@@ -60,7 +60,7 @@ func TestFailTx(t *testing.T) {
 	gormtx.Exec(func() error { return gormtx.TX.Create(&Product{Code: "102", Price: 100}).Error })
 	gormtx.Commit()
 	products := []Product{}
-	db.Where("Code lake 10%").Find(&products)
+	db.Where("Code like '10%'").Find(&products)
 	if len(products) != 0 {
 		t.Errorf("test fail %d", len(products))
 	}
